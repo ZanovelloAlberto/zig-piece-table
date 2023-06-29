@@ -15,6 +15,12 @@ on:
 
 # A workflow run is made up of one or more jobs that can run sequentially or in parallel
 jobs:
+  lint:
+    runs-on: ubuntu-latest
+    steps:
+      - uses: actions/checkout@v2
+      - uses: goto-bus-stop/setup-zig@v2
+      - run: zig fmt --check src/*.zig
   # This workflow contains a single job called "build"
   build:
     # The type of runner that the job will run on
@@ -35,4 +41,4 @@ jobs:
 
       # Runs command
       - name: Build Example
-        run: zig test ./src/pieceTable.zig
+        run: zig build run 
